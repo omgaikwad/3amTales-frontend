@@ -1,0 +1,55 @@
+.LoginPage {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.login-container {
+  margin-top: 6rem;
+  width: fit-content;
+}
+
+.login-btn {
+  width: 100%;
+}
+
+.signup-redirect-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-redirect-link {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.login-heading {
+  text-align: center;
+}
+
+.checkbox-container {
+  display: flex;
+  margin-right: 1rem;
+}
+.form-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.forgot-password {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+}
+.login-password-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.login-password-eye-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+}

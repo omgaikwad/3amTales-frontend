@@ -1,0 +1,55 @@
+.SignupPage {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.signup-container {
+  margin-top: 2rem;
+  width: fit-content;
+}
+
+.signup-btn {
+  width: 100%;
+}
+.form-checkbox input {
+  margin-right: 1rem;
+}
+.login-redirect-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-redirect-link {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.signup-heading {
+  text-align: center;
+}
+.create-password-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.password-eye-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+}
+.password-again-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.password-again-eye-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+}
