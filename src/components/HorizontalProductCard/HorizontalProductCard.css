@@ -1,0 +1,23 @@
+.card-horizontal {
+  height: 16rem;
+  box-shadow: none;
+}
+.card-horizontal-content {
+  margin-left: 1rem;
+}
+.cart-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.4rem;
+  width: 100%;
+}
+.cart-button-container button {
+  width: 100%;
+}
+.cart-product-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

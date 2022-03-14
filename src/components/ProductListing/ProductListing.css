@@ -1,0 +1,13 @@
+.store-container {
+  grid-area: store;
+  margin: 1rem 0 0 1rem;
+}
+.store-vertical-products {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.store-heading-container {
+  font-size: 1rem;
+}
