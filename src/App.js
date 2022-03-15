@@ -10,6 +10,7 @@ import StorePage from "./pages/StorePage/StorePage";
 import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Mockman from "mockman-js";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
   );

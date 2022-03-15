@@ -38,7 +38,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Sapiens: A Brief History of Humankind",
+    title: "Sapiens",
     author: "Yuval Noah Harari",
     mrpPrice: "599",
     discountPrice: "391",
