@@ -47,7 +47,7 @@ const LandingPage = () => {
               src="/assets/book-images/the-magic-drums.jpg"
               alt="indian-storytellers"
             />
-            <p className="category-description">Indian Storytellers</p>
+            <p className="category-description">Childrens</p>
           </a>
         </div>
         <div className="category">

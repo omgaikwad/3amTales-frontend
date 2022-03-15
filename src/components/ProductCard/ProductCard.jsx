@@ -5,7 +5,7 @@ const ProductCard = () => {
   return (
     <div className="card-vertical">
       <div className="card-img">
-        <img src="../../assets/book-images/the-krishna-key.jpg" alt="" />
+        <img src="/assets/book-images/the-krishna-key.jpg" alt="" />
         <span className="card-badge">NEW</span>
         <i className="far fa-heart fa-lg card-heart-icon wishlist-heart card-close"></i>
       </div>
