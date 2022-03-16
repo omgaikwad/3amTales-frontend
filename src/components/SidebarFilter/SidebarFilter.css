@@ -51,5 +51,8 @@
 .price-range-span span {
   font-size: 12px;
   font-weight: 500;
-  color: var(--gray);
+  color: orange;
+}
+.btn-clear-filter {
+  cursor: pointer;
 }

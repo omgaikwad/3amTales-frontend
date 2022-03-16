@@ -8,12 +8,23 @@ const productListReducerFunc = (productListState, action) => {
       return { ...productListState, sortBy: action.payload };
     case "PRICE_RANGE":
       return { ...productListState, priceRange: action.payload };
-    case "RATINGS":
-      return { ...productListState, ratings: action.payload };
+    case "RATING":
+      return { ...productListState, rating: action.payload };
     case "CATEGORY":
-      return { ...productListState, category: action.payload };
+      return {
+        ...productListState,
+        category: productListState.category.includes(action.payload)
+          ? productListState.category.filter(
+              (value) => value !== action.payload
+            )
+          : [...productListState.category, action.payload],
+      };
     default:
-      return { sortBy: "", priceRange: "0", ratings: "", category: "" };
+      return {
+        sortBy: null,
+        rating: "1",
+        category: [],
+      };
   }
 };
 
@@ -21,10 +32,9 @@ const FilterContextProvider = ({ children }) => {
   const [productListState, productListDispatch] = useReducer(
     productListReducerFunc,
     {
-      sortBy: "",
-      priceRange: "0",
-      ratings: "",
-      category: "",
+      sortBy: null,
+      rating: "1",
+      category: [],
     }
   );
 
@@ -37,4 +47,4 @@ const FilterContextProvider = ({ children }) => {
 
 const useFilterContext = () => useContext(FilterContext);
 
-export { FilterContextProvider, useFilter };
+export { FilterContextProvider, useFilterContext };

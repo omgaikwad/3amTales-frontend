@@ -24,3 +24,11 @@
 .move-to-cart {
   width: 100%;
 }
+.card-rating {
+  color: orange;
+}
+.card-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -20,6 +20,10 @@ const ProductCard = ({ product }) => {
           <span className="sale-price">Rs. {product.discountPrice}</span>
           <span className="mrp-price">Rs. {product.mrpPrice}</span>
           <span className="card-discount">({product.discountPercent}%)</span>
+          <span className="card-rating">
+            {product.rating}
+            <i className="fa-solid fa-star fa-sm"></i>
+          </span>
         </div>
         <div className="card-footer">
           <div className="icon-button-container card-button">
