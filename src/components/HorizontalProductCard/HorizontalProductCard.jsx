@@ -1,33 +1,52 @@
 import React from "react";
+import { useCartContext } from "../../context/cart-context";
 import "./HorizontalProductCard.css";
 
-const HorizontalProductCard = () => {
+const HorizontalProductCard = ({ product }) => {
+  const { cartListState, cartListDispatch } = useCartContext();
   return (
     <div className="HorizontalProductCard card-horizontal">
       <div class="card-img-horizontal">
-        <img src="/assets/book-images/prisoner-of-birth.jpg" alt="" />
+        <img src={product.image} alt="" />
       </div>
       <div class="card-horizontal-content">
         <div class="card-title">
-          <h4>A Prisoner of Birth</h4>
+          <h4> {product.title} </h4>
         </div>
         <div class="card-description">
-          <p>Jeffery Archer</p>
+          <p> {product.author} </p>
         </div>
         <div class="card-price">
-          <span class="sale-price">Rs. 250</span>
-          <span class="mrp-price">Rs. 500</span>
-          <span class="card-discount">(50%)</span>
+          <span class="sale-price">Rs. {product.discountPrice}</span>
+          <span class="mrp-price">Rs. {product.mrpPrice}</span>
+          <span class="card-discount">({product.discountPercent}%)</span>
         </div>
         <div class="cart-product-quantity">
           <span>Quantity: </span>
-          <i class="fa-solid fa-circle-minus"></i>
-          <span class="product-quantity">1</span>
-          <i class="fa-solid fa-circle-plus"></i>
+          <i
+            onClick={() =>
+              cartListDispatch({ type: "DECREMENT_QUANTITY", payload: product })
+            }
+            class="fa-solid fa-circle-minus fa-lg"
+          ></i>
+          <span class="product-quantity">{product.cartQuantity}</span>
+          <i
+            onClick={() =>
+              cartListDispatch({ type: "INCREMENT_QUANTITY", payload: product })
+            }
+            class="fa-solid fa-circle-plus fa-lg"
+          ></i>
         </div>
         <div class="card-footer">
           <div class="icon-button-container card-button cart-button-container">
-            <button class="btn btn-icon">Remove from Cart</button>
+            <button
+              onClick={() =>
+                cartListDispatch({ type: "REMOVE_FROM_CART", payload: product })
+              }
+              class="btn btn-icon"
+            >
+              Remove from Cart
+            </button>
             <button class="btn">Move To Wishlist</button>
           </div>
         </div>

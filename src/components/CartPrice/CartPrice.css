@@ -36,6 +36,7 @@ hr {
   box-sizing: border-box;
   background-color: var(--white);
   width: 25rem;
+  height: 25rem;
   padding: 2rem;
   margin: 1rem;
   border-radius: 10px;

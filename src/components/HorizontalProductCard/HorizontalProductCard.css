@@ -21,3 +21,6 @@
   align-items: center;
   justify-content: space-around;
 }
+.cart-product-quantity i {
+  cursor: pointer;
+}

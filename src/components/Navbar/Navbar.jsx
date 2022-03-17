@@ -1,8 +1,11 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/cart-context";
 
 export const Navbar = () => {
+  const { cartListState, cartListDispatch } = useCartContext();
+
   return (
     <div className="Navbar">
       <div className="left-navbar">
@@ -15,13 +18,19 @@ export const Navbar = () => {
         <input type="text" name="" id="search-bar" placeholder="Search" />
       </div>
       <div className="right-navbar">
-        <Link to="/wishlist">
+        <Link to="/wishlist" className="badge-container">
           <i className="fa-regular fa-heart fa-lg navbar-icons"></i>
+          <div className="badge badge-number">2</div>
         </Link>
 
-        <Link to="/cart" className="navbar-cart">
+        <Link to="/cart" className="navbar-cart badge-container">
           <i className="fa-solid fa-cart-shopping fa-lg navbar-icons"></i>
           <span>Cart</span>
+          {cartListState.cartList.length === 0 ? null : (
+            <div className="badge badge-number">
+              {cartListState.cartList.length}
+            </div>
+          )}
         </Link>
 
         <button className="btn btn-primary">
