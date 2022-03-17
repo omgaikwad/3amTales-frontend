@@ -8,20 +8,36 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "myths-legends-sagas",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "Stories revolving around ancient past, heroes and their tales.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "crime-mystery-thriller",
+    description:
+      "Stories with plot that always revolves around a crime of sorts that must be solved—or foiled—by the protagonists.",
   },
   {
     _id: uuid(),
     categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    description: "Books that are based on facts and real events.",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "fantasy-fiction",
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+      "Fantasy is a genre of speculative fiction involving magical elements, typically set in a fictional universe and sometimes inspired by mythology and folklore.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "action-adventure",
+    description:
+      "Action and adventure books constantly have you on the edge of your seat with excitement, as your fave main character repeatedly finds themselves in high stakes situations.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "childrens",
+    description: "Stories specifically read by childrens.",
   },
 ];

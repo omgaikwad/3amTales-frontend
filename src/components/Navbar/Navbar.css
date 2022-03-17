@@ -1,10 +1,13 @@
-.navbar {
+.Navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 1rem;
   background-color: var(--white);
   height: 5rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 .logo-title {
   font-weight: 600;
