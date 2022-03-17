@@ -1,3 +1,5 @@
-## E-Commerce Backend
+## 3AM TALES 
 
-This folder contains the Mock Backend created for E-Commerce App. It contains different API end-points and database configuration for building E-Commerce; so that you can focus on building Frontend.
+3AM TALES is an online marketplace to buy books whether it is fiction, self-help, biography or non-fiction. It is one stop destination for all things books.
+
+
