@@ -81,7 +81,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes("myths-legends-sagas")}
             onChange={() =>
@@ -96,7 +96,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes(
               "crime-mystery-thriller"
@@ -114,7 +114,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes("non-fiction")}
             onChange={() =>
@@ -127,7 +127,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes("fantasy-fiction")}
             onChange={() =>
@@ -142,7 +142,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes("action-adventure")}
             onChange={() =>
@@ -157,7 +157,7 @@ const SidebarFilter = () => {
         <label>
           <input
             type="checkbox"
-            name=""
+            name="category-input-filter"
             className="filter-category-checkbox"
             checked={productListState.category.includes("childrens")}
             onChange={() =>

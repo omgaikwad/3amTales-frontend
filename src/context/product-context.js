@@ -7,9 +7,15 @@ const ProductContextProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/products")
-      .then((response) => setProductList(response.data.products));
+    const getProducts = async () => {
+      try {
+        const response = await axios.get("/api/products");
+        setProductList(response.data.products);
+      } catch (err) {
+        console.log("error from catch", err);
+      }
+    };
+    getProducts();
   }, []);
 
   return (
