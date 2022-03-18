@@ -2,17 +2,36 @@ import React from "react";
 import "./CartPage.css";
 import HorizontalProductCard from "../../components/HorizontalProductCard/HorizontalProductCard";
 import CartPrice from "../../components/CartPrice/CartPrice";
+import { useCartContext } from "../../context/cart-context";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  return (
-    <div className="CartPage">
-      <h3 class="cart-heading">MY CART(1)</h3>
-      <div className="cart-page-container">
-        <HorizontalProductCard />
-        <CartPrice />
+  const { cartListState, cartListDispatch } = useCartContext();
+
+  if (cartListState.cartList.length === 0) {
+    return (
+      <div className="no-items-in-cart-container">
+        <h3 className="cart-heading">No Items in the Cart!</h3>
+        <button className="btn btn-primary">
+          <Link to="/store">Shop Now</Link>
+        </button>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="CartPage">
+        <h3 class="cart-heading">MY CART({cartListState.cartList.length})</h3>
+        <div className="cart-page-container">
+          <div className="cart-horizontal-card-container">
+            {cartListState.cartList.map((product) => {
+              return <HorizontalProductCard product={product} />;
+            })}
+          </div>
+          <CartPrice />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default CartPage;

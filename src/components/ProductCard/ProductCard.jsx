@@ -1,7 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/cart-context";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
+  const { cartListState, cartListDispatch } = useCartContext();
+
   return (
     <div className="card-vertical">
       <div className="card-img">
@@ -26,11 +30,24 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
         <div className="card-footer">
-          <div className="icon-button-container card-button">
-            <button className="btn btn-icon move-to-cart">
-              <i className="fas fa-shopping-cart"></i>
-              Add to Cart
-            </button>
+          <div className="card-button">
+            {cartListState.cartList.find(
+              (cartItem) => cartItem._id === product._id
+            ) ? (
+              <button className="btn btn-success move-to-cart">
+                <Link to="/cart">Go to Cart</Link>
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  cartListDispatch({ type: "ADD_TO_CART", payload: product })
+                }
+                className="btn btn-icon add-to-cart"
+              >
+                <i className="fas fa-shopping-cart"></i>
+                Add to Cart
+              </button>
+            )}
           </div>
         </div>
       </div>

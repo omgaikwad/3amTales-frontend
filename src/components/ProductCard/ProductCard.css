@@ -21,8 +21,14 @@
 .card-button {
   width: 100%;
 }
+.add-to-cart {
+  width: 100%;
+}
 .move-to-cart {
   width: 100%;
+}
+.move-to-cart a {
+  color: white;
 }
 .card-rating {
   color: orange;
