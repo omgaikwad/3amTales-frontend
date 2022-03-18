@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
+const { default: axios } = require("axios");
 
 const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
-  const axios = require("axios").default;
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
