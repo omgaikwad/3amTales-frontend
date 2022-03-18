@@ -24,3 +24,6 @@
 .cart-product-quantity i {
   cursor: pointer;
 }
+.btn-go-to-wishlist a {
+  color: white;
+}
