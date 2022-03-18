@@ -1,17 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cart-context";
+import { useWishlistContext } from "../../context/wishlist-context";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   const { cartListState, cartListDispatch } = useCartContext();
+  const { wishlistState, wishlistDispatch } = useWishlistContext();
 
   return (
     <div className="card-vertical">
       <div className="card-img">
         <img src={product.image} alt="" />
         <span className="card-badge">NEW</span>
-        <i className="far fa-heart fa-lg card-heart-icon wishlist-heart card-close"></i>
+        {wishlistState.wishlist.find((obj) => obj._id === product._id) ? (
+          <i
+            onClick={() =>
+              wishlistDispatch({
+                type: "REMOVE_FROM_WISHLIST",
+                payload: product,
+              })
+            }
+            className="fa-solid fa-heart fa-lg card-heart-icon wishlist-heart card-close"
+          ></i>
+        ) : (
+          <i
+            onClick={() =>
+              wishlistDispatch({
+                type: "ADD_TO_WISHLIST",
+                payload: product,
+              })
+            }
+            className="far fa-heart fa-lg card-heart-icon wishlist-heart card-close"
+          ></i>
+        )}
       </div>
       <div className="card-description-container">
         <div className="card-title">
@@ -35,7 +57,7 @@ const ProductCard = ({ product }) => {
               (cartItem) => cartItem._id === product._id
             ) ? (
               <button className="btn btn-success move-to-cart">
-                <Link to="/cart">Go to Cart</Link>
+                <Link to="/cart">Go To Cart</Link>
               </button>
             ) : (
               <button

@@ -2,9 +2,11 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cart-context";
+import { useWishlistContext } from "../../context/wishlist-context";
 
 export const Navbar = () => {
-  const { cartListState, cartListDispatch } = useCartContext();
+  const { cartListState } = useCartContext();
+  const { wishlistState } = useWishlistContext();
 
   return (
     <div className="Navbar">
@@ -19,8 +21,12 @@ export const Navbar = () => {
       </div>
       <div className="right-navbar">
         <Link to="/wishlist" className="badge-container">
-          <i className="fa-regular fa-heart fa-lg navbar-icons"></i>
-          <div className="badge badge-number">2</div>
+          <i className="fa-solid fa-heart fa-lg navbar-icons"></i>
+          {wishlistState.wishlist.length !== 0 ? (
+            <div className="badge badge-number">
+              {wishlistState.wishlist.length}
+            </div>
+          ) : null}
         </Link>
 
         <Link to="/cart" className="navbar-cart badge-container">

@@ -1,9 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cart-context";
+import { useWishlistContext } from "../../context/wishlist-context";
 import "./HorizontalProductCard.css";
 
 const HorizontalProductCard = ({ product }) => {
   const { cartListState, cartListDispatch } = useCartContext();
+  const { wishlistState, wishlistDispatch } = useWishlistContext();
+
   return (
     <div className="HorizontalProductCard card-horizontal">
       <div class="card-img-horizontal">
@@ -47,7 +51,23 @@ const HorizontalProductCard = ({ product }) => {
             >
               Remove from Cart
             </button>
-            <button class="btn">Move To Wishlist</button>
+            {wishlistState.wishlist.find((obj) => obj._id === product._id) ? (
+              <button class="btn btn-success btn-go-to-wishlist">
+                <Link to="/wishlist">Go To Wishlist</Link>
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  wishlistDispatch({
+                    type: "ADD_TO_WISHLIST",
+                    payload: product,
+                  })
+                }
+                class="btn"
+              >
+                Add To Wishlist
+              </button>
+            )}
           </div>
         </div>
       </div>

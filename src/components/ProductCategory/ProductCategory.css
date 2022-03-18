@@ -1,0 +1,28 @@
+.category {
+  position: relative;
+  box-sizing: border-box;
+  height: 20rem;
+  width: 14rem;
+  padding: 6px 4px;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+.category-name {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.category-img {
+  height: 100%;
+  width: 100%;
+}
+.btn-category-card {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+.category-description {
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-align: center;
+}
