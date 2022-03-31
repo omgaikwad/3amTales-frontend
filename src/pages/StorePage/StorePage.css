@@ -3,3 +3,31 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "filter store store store store";
 }
+
+@media screen and (max-width: 1280px) {
+  .store-main-body {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "filter filter store store store store store";
+  }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+  .store-main-body {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "filter filter filter filter filter"
+      "store store store store store";
+  }
+  .filter-container {
+    margin-right: 0;
+  }
+  .products-container {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}

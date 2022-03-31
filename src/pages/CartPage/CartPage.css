@@ -1,6 +1,7 @@
 .cart-page-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .cart-horizontal-card-container {
   display: flex;

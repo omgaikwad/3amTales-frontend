@@ -60,3 +60,46 @@
   font-weight: 600;
   text-align: center;
 }
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+  .right-navbar {
+    gap: 1rem;
+    margin-right: 4px;
+  }
+
+  .center-navbar input {
+    width: 12rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .right-navbar {
+    gap: 1rem;
+    margin-right: 4px;
+  }
+  .logo-title a {
+    font-size: 1.5rem;
+  }
+  .center-navbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  .right-navbar {
+    gap: 12px;
+    margin-right: 4px;
+  }
+  .logo-title a {
+    font-size: 1.2rem;
+  }
+  .btn-primary {
+    padding: 0.3rem 8px;
+  }
+}
