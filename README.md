@@ -1,4 +1,4 @@
-![Logo](./public/assets/images/3amtales-logo.png)
+![Logo](./public/assets/images/3amtalesLogo.png)
 
 # 3AM TALES
 
