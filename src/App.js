@@ -8,6 +8,7 @@ import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/product" element={<ProductPage />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
