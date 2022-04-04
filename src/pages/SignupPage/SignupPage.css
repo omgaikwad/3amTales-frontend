@@ -53,3 +53,9 @@
   right: 12px;
   cursor: pointer;
 }
+
+.show-error-text {
+  color: var(--danger-color);
+  font-size: 12px;
+  font-weight: 600;
+}

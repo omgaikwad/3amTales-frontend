@@ -1,58 +1,180 @@
 import React from "react";
 import "./SignupPage.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+const axios = require("axios").default;
 
 const SignupPage = () => {
+  const [signupDetails, setSignupDetails] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    passwordAgain: "",
+  });
+
+  const [showSignupError, setShowSignupError] = useState(false);
+
+  const [showPasswords, setShowPasswords] = useState({
+    password: false,
+    passwordAgain: false,
+  });
+
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+
+    if (signupDetails.password !== signupDetails.passwordAgain) {
+      setShowSignupError(true);
+    } else {
+      setShowSignupError(false);
+      setSignupDetails({
+        fullName: "",
+        email: "",
+        password: "",
+        passwordAgain: "",
+      });
+
+      const createNewUser = async () => {
+        try {
+          const response = await axios.post("/api/auth/signup", {
+            fullName: signupDetails.fullName,
+            email: signupDetails.email,
+            password: signupDetails.password,
+          });
+          console.log(response);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      createNewUser();
+    }
+  };
+
   return (
     <div className="SignupPage">
       <div className="signup-container">
-        <form>
+        <form className="signup-form" onSubmit={handleSignupSubmit}>
           <h3 className="signup-heading">Sign Up</h3>
 
-          <label for="form-full-name">Full Name</label>
-          <input id="form-first-name" type="text" placeholder="John Wick" />
+          <label htmlFor="form-full-name">Full Name</label>
+          <input
+            onChange={(e) =>
+              setSignupDetails({ ...signupDetails, fullName: e.target.value })
+            }
+            value={signupDetails.fullName}
+            id="form-full-name"
+            type="text"
+            placeholder="John Wick"
+            required
+          />
 
-          <label for="form-email">Email</label>
-          <input id="form-email" type="email" placeholder="abc@xyz.com" />
+          <label htmlFor="form-email">Email</label>
+          <input
+            onChange={(e) =>
+              setSignupDetails({ ...signupDetails, email: e.target.value })
+            }
+            value={signupDetails.email}
+            id="form-email"
+            type="email"
+            placeholder="abc@xyz.com"
+            required
+          />
 
-          <label for="form-password">Create Password </label>
+          <label htmlFor="form-password">Create Password </label>
           <div className="create-password-container">
             <input
+              onChange={(e) =>
+                setSignupDetails({ ...signupDetails, password: e.target.value })
+              }
+              value={signupDetails.password}
               id="form-password"
-              type="password"
+              type={showPasswords.password ? "text" : "password"}
               placeholder="••••••••••••••"
+              required
             />
             <span className="password-eye-icon">
-              <i className="fa-solid fa-eye"></i>
+              {showPasswords.password ? (
+                <i
+                  onClick={() =>
+                    setShowPasswords({
+                      ...showPasswords,
+                      password: !showPasswords.password,
+                    })
+                  }
+                  className="fa-solid fa-eye"
+                ></i>
+              ) : (
+                <i
+                  onClick={() =>
+                    setShowPasswords({
+                      ...showPasswords,
+                      password: !showPasswords.password,
+                    })
+                  }
+                  class="fa-solid fa-eye-slash"
+                ></i>
+              )}
             </span>
           </div>
 
-          <label for="form-password-again">Confirm Password </label>
+          {/* Show Passwords doesn't match Error  */}
+
+          {showSignupError && (
+            <p className="show-error-text">Passwords Does Not Match</p>
+          )}
+
+          <label htmlFor="form-password-again">Confirm Password </label>
           <div className="password-again-container">
             <input
+              onChange={(e) =>
+                setSignupDetails({
+                  ...signupDetails,
+                  passwordAgain: e.target.value,
+                })
+              }
+              value={signupDetails.passwordAgain}
               id="form-password-again"
-              type="password"
+              type={showPasswords.passwordAgain ? "text" : "password"}
               placeholder="••••••••••••••"
+              required
             />
             <span className="password-again-eye-icon">
-              <i className="fa-solid fa-eye"></i>
+              {showPasswords.passwordAgain ? (
+                <i
+                  onClick={() =>
+                    setShowPasswords({
+                      ...showPasswords,
+                      passwordAgain: !showPasswords.passwordAgain,
+                    })
+                  }
+                  className="fa-solid fa-eye"
+                ></i>
+              ) : (
+                <i
+                  onClick={() =>
+                    setShowPasswords({
+                      ...showPasswords,
+                      passwordAgain: !showPasswords.passwordAgain,
+                    })
+                  }
+                  class="fa-solid fa-eye-slash"
+                ></i>
+              )}
             </span>
           </div>
 
           <div className="form-checkbox">
-            <input type="checkbox" />
-            <p>I agree to the terms and conditions.</p>
+            <input id="terms-and-conditions" type="checkbox" required />
+            <label htmlFor="terms-and-conditions">
+              I agree to the terms and conditions.
+            </label>
           </div>
 
           <div className="form-buttons">
-            <button className="btn btn-primary signup-btn">Sign Up</button>
+            <button type="submit" className="btn btn-primary signup-btn">
+              Sign Up
+            </button>
           </div>
           <div className="login-redirect-container">
-            {/* <a
-              href="../login/login.html"
-              className="login-redirect-link btn-link"
-              ></a> */}
-
             <Link to="/login" className="login-redirect-link btn-link">
               Already have an account
               <i className="fa-solid fa-chevron-right"></i>
