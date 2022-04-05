@@ -54,6 +54,10 @@
   cursor: pointer;
 }
 
+.login-container {
+  width: 18rem;
+}
+
 .form-buttons {
   display: flex;
   flex-direction: column;

@@ -1,7 +1,9 @@
 import React from "react";
 import "./LoginPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuthContext } from "../../context/auth-context";
+const axios = require("axios").default;
 
 const LoginPage = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -9,9 +11,48 @@ const LoginPage = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const { auth, setAuth } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const [showLoginError, setShowLoginError] = useState({
+    showError: true,
+    message: "Login to add items in Cart and Wishlist.",
+  });
+
+  const loginExistingUser = async () => {
+    try {
+      const response = await axios.post("/api/auth/login", loginDetails);
+
+      localStorage.setItem("USER_TOKEN", response.data.encodedToken);
+      localStorage.setItem(
+        "USER_DATA",
+        JSON.stringify({
+          fullName: response.data.foundUser.fullName,
+          email: response.data.foundUser.email,
+        })
+      );
+
+      setAuth({
+        isLoggedIn: true,
+        token: response.data.encodedToken,
+        user: {
+          fullName: response.data.foundUser.fullName,
+          email: response.data.foundUser.email,
+        },
+      });
+      navigate("/");
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      setShowLoginError({
+        showError: true,
+        message: "Email or Password is wrong",
+      });
+    }
+  };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +60,17 @@ const LoginPage = () => {
       email: "",
       password: "",
     });
-    console.log(loginDetails);
+
+    loginExistingUser();
+  };
+
+  // Guest Login Handler
+  const guestLoginHandler = () => {
+    setLoginDetails({
+      email: "adarshbalika@gmail.com",
+      password: "adarshBalika123",
+    });
+    loginExistingUser();
   };
 
   return (
@@ -73,21 +124,20 @@ const LoginPage = () => {
             </span>
           </div>
 
-          <div className="form-checkbox">
-            <div className="checkbox-container">
-              <input id="remember-me-checkbox" type="checkbox" required />
-              <label htmlFor="remember-me-checkbox">Remember Me</label>
-            </div>
-            <a href="" className="forgot-password">
-              Forgot your Password?
-            </a>
-          </div>
+          {/* Show Error  */}
+
+          {showLoginError.showError && (
+            <p className="show-error-text"> {showLoginError.message} </p>
+          )}
 
           <div className="form-buttons">
-            <button type="submit" className="btn btn-primary login-btn">
+            <button type="submit" className="btn btn-outline-primary login-btn">
               Login
             </button>
-            <button className="btn btn-success login-btn">
+            <button
+              onClick={() => guestLoginHandler()}
+              className="btn btn-primary login-btn"
+            >
               Login as Guest
             </button>
           </div>

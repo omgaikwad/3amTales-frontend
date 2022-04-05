@@ -1,6 +1,6 @@
 import React from "react";
 import "./SignupPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthContext } from "../../context/auth-context";
 const axios = require("axios").default;
@@ -13,9 +13,14 @@ const SignupPage = () => {
     passwordAgain: "",
   });
 
+  const navigate = useNavigate();
+
   const { auth, setAuth } = useAuthContext();
 
-  const [showPasswordError, setShowPasswordError] = useState(false);
+  const [showSignupError, setShowSignupError] = useState({
+    showError: false,
+    message: "",
+  });
 
   const [showPasswords, setShowPasswords] = useState({
     password: false,
@@ -26,9 +31,12 @@ const SignupPage = () => {
     e.preventDefault();
 
     if (signupDetails.password !== signupDetails.passwordAgain) {
-      setShowPasswordError(true);
+      setShowSignupError({
+        showError: true,
+        message: "Given Passwords Does Not Match",
+      });
     } else {
-      setShowPasswordError(false);
+      setShowSignupError({ ...showSignupError, showError: false });
       setSignupDetails({
         fullName: "",
         email: "",
@@ -43,7 +51,16 @@ const SignupPage = () => {
             email: signupDetails.email,
             password: signupDetails.password,
           });
+
           localStorage.setItem("USER_TOKEN", response.data.encodedToken);
+          localStorage.setItem(
+            "USER_DATA",
+            JSON.stringify({
+              fullName: response.data.createdUser.fullName,
+              email: response.data.createdUser.email,
+            })
+          );
+
           setAuth({
             isLoggedIn: true,
             token: response.data.encodedToken,
@@ -52,9 +69,14 @@ const SignupPage = () => {
               email: response.data.createdUser.email,
             },
           });
+          navigate("/");
           console.log(response);
         } catch (err) {
-          console.log(err);
+          console.log(err.message);
+          setShowSignupError({
+            showError: true,
+            message: "Account already exists with given Email",
+          });
         }
       };
       createNewUser();
@@ -97,6 +119,7 @@ const SignupPage = () => {
               onChange={(e) =>
                 setSignupDetails({ ...signupDetails, password: e.target.value })
               }
+              minLength="6"
               value={signupDetails.password}
               id="form-password"
               type={showPasswords.password ? "text" : "password"}
@@ -122,17 +145,11 @@ const SignupPage = () => {
                       password: !showPasswords.password,
                     })
                   }
-                  class="fa-solid fa-eye-slash"
+                  className="fa-solid fa-eye-slash"
                 ></i>
               )}
             </span>
           </div>
-
-          {/* Show Passwords doesn't match Error  */}
-
-          {showPasswordError && (
-            <p className="show-error-text">Passwords Does Not Match</p>
-          )}
 
           <label htmlFor="form-password-again">Confirm Password </label>
           <div className="password-again-container">
@@ -143,6 +160,7 @@ const SignupPage = () => {
                   passwordAgain: e.target.value,
                 })
               }
+              minLength="6"
               value={signupDetails.passwordAgain}
               id="form-password-again"
               type={showPasswords.passwordAgain ? "text" : "password"}
@@ -168,7 +186,7 @@ const SignupPage = () => {
                       passwordAgain: !showPasswords.passwordAgain,
                     })
                   }
-                  class="fa-solid fa-eye-slash"
+                  className="fa-solid fa-eye-slash"
                 ></i>
               )}
             </span>
@@ -180,6 +198,12 @@ const SignupPage = () => {
               I agree to the terms and conditions.
             </label>
           </div>
+
+          {/* Show Error  */}
+
+          {showSignupError.showError && (
+            <p className="show-error-text"> {showSignupError.message} </p>
+          )}
 
           <div className="form-buttons">
             <button type="submit" className="btn btn-primary signup-btn">
