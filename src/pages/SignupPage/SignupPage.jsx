@@ -2,6 +2,7 @@ import React from "react";
 import "./SignupPage.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuthContext } from "../../context/auth-context";
 const axios = require("axios").default;
 
 const SignupPage = () => {
@@ -12,7 +13,9 @@ const SignupPage = () => {
     passwordAgain: "",
   });
 
-  const [showSignupError, setShowSignupError] = useState(false);
+  const { auth, setAuth } = useAuthContext();
+
+  const [showPasswordError, setShowPasswordError] = useState(false);
 
   const [showPasswords, setShowPasswords] = useState({
     password: false,
@@ -23,9 +26,9 @@ const SignupPage = () => {
     e.preventDefault();
 
     if (signupDetails.password !== signupDetails.passwordAgain) {
-      setShowSignupError(true);
+      setShowPasswordError(true);
     } else {
-      setShowSignupError(false);
+      setShowPasswordError(false);
       setSignupDetails({
         fullName: "",
         email: "",
@@ -39,6 +42,15 @@ const SignupPage = () => {
             fullName: signupDetails.fullName,
             email: signupDetails.email,
             password: signupDetails.password,
+          });
+          localStorage.setItem("USER_TOKEN", response.data.encodedToken);
+          setAuth({
+            isLoggedIn: true,
+            token: response.data.encodedToken,
+            user: {
+              fullName: response.data.createdUser.fullName,
+              email: response.data.createdUser.email,
+            },
           });
           console.log(response);
         } catch (err) {
@@ -118,7 +130,7 @@ const SignupPage = () => {
 
           {/* Show Passwords doesn't match Error  */}
 
-          {showSignupError && (
+          {showPasswordError && (
             <p className="show-error-text">Passwords Does Not Match</p>
           )}
 

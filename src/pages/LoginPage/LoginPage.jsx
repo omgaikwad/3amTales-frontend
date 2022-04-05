@@ -9,6 +9,8 @@ const LoginPage = () => {
     password: "",
   });
 
+  const { auth, setAuth } = useAuthContext();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLoginSubmit = (e) => {
