@@ -5,8 +5,13 @@ import { useWishlistContext } from "../../context/wishlist-context";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
-  const { cartListState, cartListDispatch } = useCartContext();
-  const { wishlistState, wishlistDispatch } = useWishlistContext();
+  const { cart, addProductToCart } = useCartContext();
+  const {
+    wishlistDispatch,
+    wishlist,
+    addProductToWishlist,
+    removeProductFromWishlist,
+  } = useWishlistContext();
 
   const navigate = useNavigate();
 
@@ -24,14 +29,11 @@ const ProductCard = ({ product }) => {
       <div className="card-img">
         <img src={product.image} alt="" />
         <span className="card-badge">NEW</span>
-        {wishlistState.wishlist.find((obj) => obj._id === product._id) ? (
+        {wishlist.find((obj) => obj._id === product._id) ? (
           <i
             onClick={(e) => {
               e.stopPropagation();
-              wishlistDispatch({
-                type: "REMOVE_FROM_WISHLIST",
-                payload: product,
-              });
+              removeProductFromWishlist(product._id);
             }}
             className="fa-solid fa-heart fa-xl card-heart-icon wishlist-heart card-close"
           ></i>
@@ -39,10 +41,7 @@ const ProductCard = ({ product }) => {
           <i
             onClick={(e) => {
               e.stopPropagation();
-              wishlistDispatch({
-                type: "ADD_TO_WISHLIST",
-                payload: product,
-              });
+              addProductToWishlist(product);
             }}
             className="far fa-heart fa-xl card-heart-icon wishlist-heart card-close"
           ></i>
@@ -69,9 +68,7 @@ const ProductCard = ({ product }) => {
 
         <div className="card-footer">
           <div className="card-button">
-            {cartListState.cartList.find(
-              (cartItem) => cartItem._id === product._id
-            ) ? (
+            {cart.find((cartItem) => cartItem._id === product._id) ? (
               <button
                 className="btn btn-success move-to-cart"
                 onClick={(e) => {
@@ -85,7 +82,7 @@ const ProductCard = ({ product }) => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  cartListDispatch({ type: "ADD_TO_CART", payload: product });
+                  addProductToCart(product);
                 }}
                 className="btn btn-icon add-to-cart"
               >

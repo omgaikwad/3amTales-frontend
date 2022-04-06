@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context/cart-context";
 import { useWishlistContext } from "../../context/wishlist-context";
 import { useAuthContext } from "../../context/auth-context";
 
 export const Navbar = () => {
   const { cart } = useCartContext();
-  const { wishlistState } = useWishlistContext();
+  const { wishlist } = useWishlistContext();
 
   const navigate = useNavigate();
 
@@ -55,10 +55,8 @@ export const Navbar = () => {
           className="badge-container"
         >
           <i className="fa-solid fa-heart fa-lg navbar-icons"></i>
-          {wishlistState.wishlist.length !== 0 ? (
-            <div className="badge badge-number">
-              {wishlistState.wishlist.length}
-            </div>
+          {wishlist.length !== 0 ? (
+            <div className="badge badge-number">{wishlist.length}</div>
           ) : null}
         </div>
 
@@ -83,7 +81,7 @@ export const Navbar = () => {
                 Hi, {auth.user.fullName.split(" ")[0]}
               </p>
               <p className="navbar-profile-title-account">
-                Account <i class="fa-solid fa-caret-down"></i>
+                Account <i className="fa-solid fa-caret-down"></i>
               </p>
             </div>
             <div

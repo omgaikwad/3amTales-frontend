@@ -10,8 +10,6 @@ const CartContextProvider = ({ children }) => {
 
   const { auth } = useAuthContext();
 
-  const addProductToCart = async (product) => {};
-
   useEffect(() => {
     if (auth.isLoggedIn) {
       (async () => {
@@ -20,15 +18,77 @@ const CartContextProvider = ({ children }) => {
             authorization: auth.token,
           },
         });
-        console.log(cartResponse);
+        setCart(cartResponse.data.cart);
       })();
     } else {
       setCart([]);
     }
   }, [auth]);
 
+  const addProductToCart = async (product) => {
+    try {
+      const addToCartResponse = await axios.post(
+        "/api/user/cart",
+        { product },
+        {
+          headers: {
+            authorization: auth.token,
+          },
+        }
+      );
+      setCart(addToCartResponse.data.cart);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeProductFromCart = async (productId) => {
+    try {
+      const removeFromCartResponse = await axios.delete(
+        `/api/user/cart/${productId}`,
+        {
+          headers: {
+            authorization: auth.token,
+          },
+        }
+      );
+      setCart(removeFromCartResponse.data.cart);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updateProductCartQuantity = async (productId, updateType) => {
+    try {
+      const updateCartQtyResponse = await axios.post(
+        `/api/user/cart/${productId}`,
+        {
+          action: {
+            type: updateType,
+          },
+        },
+        {
+          headers: {
+            authorization: auth.token,
+          },
+        }
+      );
+      setCart(updateCartQtyResponse.data.cart);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+        addProductToCart,
+        removeProductFromCart,
+        updateProductCartQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

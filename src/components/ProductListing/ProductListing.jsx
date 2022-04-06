@@ -43,7 +43,7 @@ const ProductListing = () => {
       </div>
       <div className="products-container">
         {filteredProductList.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard product={product} key={product._id} />;
         })}
       </div>
     </div>

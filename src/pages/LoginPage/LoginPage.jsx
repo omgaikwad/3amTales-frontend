@@ -44,7 +44,6 @@ const LoginPage = () => {
         },
       });
       navigate("/");
-      console.log(response);
     } catch (err) {
       console.log(err);
       setShowLoginError({
@@ -79,7 +78,7 @@ const LoginPage = () => {
         <form className="login-form" onSubmit={handleLoginSubmit}>
           <h3 className="login-heading">Login</h3>
 
-          <label for="form-email">Email</label>
+          <label htmlFor="form-email">Email</label>
           <input
             onChange={(e) =>
               setLoginDetails({
@@ -94,7 +93,7 @@ const LoginPage = () => {
             required
           />
 
-          <label for="form-password">Password</label>
+          <label htmlFor="form-password">Password</label>
           <div className="login-password-container">
             <input
               onChange={(e) =>
@@ -118,7 +117,7 @@ const LoginPage = () => {
               ) : (
                 <i
                   onClick={() => setShowPassword(!showPassword)}
-                  class="fa-solid fa-eye-slash"
+                  className="fa-solid fa-eye-slash"
                 ></i>
               )}
             </span>

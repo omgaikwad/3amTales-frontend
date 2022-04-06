@@ -28,7 +28,7 @@ const LandingPage = () => {
       <h2 className="category-heading">Genre</h2>
       <section className="category-container">
         {categoryList.map((obj) => {
-          return <ProductCategory category={obj} />;
+          return <ProductCategory category={obj} key={obj._id} />;
         })}
       </section>
     </div>

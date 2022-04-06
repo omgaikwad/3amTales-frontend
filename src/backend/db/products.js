@@ -18,7 +18,6 @@ export const products = [
     discountPercent: "5",
     image: "/assets/book-images/immortals-of-meluha.jpg",
     categoryName: "myths-legends-sagas",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -32,7 +31,6 @@ export const products = [
     discountPercent: "45",
     image: "/assets/book-images/origin-danBrown.jpg",
     categoryName: "crime-mystery-thriller",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -46,7 +44,6 @@ export const products = [
     discountPercent: "29",
     image: "/assets/book-images/prisoner-of-birth.jpg",
     categoryName: "crime-mystery-thriller",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -60,7 +57,6 @@ export const products = [
     discountPercent: "35",
     image: "/assets/book-images/sapiens.jpg",
     categoryName: "non-fiction",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -74,7 +70,6 @@ export const products = [
     discountPercent: "28",
     image: "/assets/book-images/the-alchemist.jpg",
     categoryName: "fantasy-fiction",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -88,7 +83,6 @@ export const products = [
     discountPercent: "20",
     image: "/assets/book-images/the-krishna-key.jpg",
     categoryName: "action-adventure",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -102,6 +96,5 @@ export const products = [
     discountPercent: "30",
     image: "/assets/book-images/the-magic-drums.jpg",
     categoryName: "childrens",
-    inWishlist: false,
   },
 ];

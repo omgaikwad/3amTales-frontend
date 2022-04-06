@@ -5,65 +5,59 @@ import { useWishlistContext } from "../../context/wishlist-context";
 import "./HorizontalProductCard.css";
 
 const HorizontalProductCard = ({ product }) => {
-  const { cartListState, cartListDispatch } = useCartContext();
-  const { wishlistState, wishlistDispatch } = useWishlistContext();
+  const { removeProductFromCart, updateProductCartQuantity } = useCartContext();
+  const { wishlist, addProductToWishlist, removeProductFromWishlist } =
+    useWishlistContext();
 
   return (
     <div className="HorizontalProductCard card-horizontal">
-      <div class="card-img-horizontal">
+      <div className="card-img-horizontal">
         <img src={product.image} alt="" />
       </div>
-      <div class="card-horizontal-content">
-        <div class="card-title">
+      <div className="card-horizontal-content">
+        <div className="card-title">
           <h4> {product.title} </h4>
         </div>
-        <div class="card-description">
+        <div className="card-description">
           <p> {product.author} </p>
         </div>
-        <div class="card-price">
-          <span class="sale-price">Rs. {product.discountPrice}</span>
-          <span class="mrp-price">Rs. {product.mrpPrice}</span>
-          <span class="card-discount">({product.discountPercent}%)</span>
+        <div className="card-price">
+          <span className="sale-price">Rs. {product.discountPrice}</span>
+          <span className="mrp-price">Rs. {product.mrpPrice}</span>
+          <span className="card-discount">({product.discountPercent}%)</span>
         </div>
-        <div class="cart-product-quantity">
+        <div className="cart-product-quantity">
           <span>Quantity: </span>
           <i
             onClick={() =>
-              cartListDispatch({ type: "DECREMENT_QUANTITY", payload: product })
+              product.qty > 1
+                ? updateProductCartQuantity(product._id, "decrement")
+                : null
             }
-            class="fa-solid fa-circle-minus fa-lg"
+            className="fa-solid fa-circle-minus fa-lg"
           ></i>
-          <span class="product-quantity">{product.cartQuantity}</span>
+          <span className="product-quantity">{product.qty}</span>
           <i
-            onClick={() =>
-              cartListDispatch({ type: "INCREMENT_QUANTITY", payload: product })
-            }
-            class="fa-solid fa-circle-plus fa-lg"
+            onClick={() => updateProductCartQuantity(product._id, "increment")}
+            className="fa-solid fa-circle-plus fa-lg"
           ></i>
         </div>
-        <div class="card-footer">
-          <div class="icon-button-container card-button cart-button-container">
+        <div className="card-footer">
+          <div className="icon-button-container card-button cart-button-container">
             <button
-              onClick={() =>
-                cartListDispatch({ type: "REMOVE_FROM_CART", payload: product })
-              }
-              class="btn btn-icon"
+              onClick={() => removeProductFromCart(product._id)}
+              className="btn btn-icon"
             >
               Remove from Cart
             </button>
-            {wishlistState.wishlist.find((obj) => obj._id === product._id) ? (
-              <button class="btn btn-success btn-go-to-wishlist">
+            {wishlist.find((obj) => obj._id === product._id) ? (
+              <button className="btn btn-success btn-go-to-wishlist">
                 <Link to="/wishlist">Go To Wishlist</Link>
               </button>
             ) : (
               <button
-                onClick={() =>
-                  wishlistDispatch({
-                    type: "ADD_TO_WISHLIST",
-                    payload: product,
-                  })
-                }
-                class="btn"
+                onClick={() => addProductToWishlist(product)}
+                className="btn"
               >
                 Add To Wishlist
               </button>
