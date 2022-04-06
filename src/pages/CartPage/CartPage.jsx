@@ -6,9 +6,9 @@ import { useCartContext } from "../../context/cart-context";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartListState, cartListDispatch } = useCartContext();
+  const { cart, setCart } = useCartContext();
 
-  if (cartListState.cartList.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="no-items-in-cart-container">
         <h3 className="cart-heading">No Items in the Cart!</h3>
@@ -20,10 +20,10 @@ const CartPage = () => {
   } else {
     return (
       <div className="CartPage">
-        <h3 class="cart-heading">MY CART({cartListState.cartList.length})</h3>
+        <h3 class="cart-heading">MY CART({cart.length})</h3>
         <div className="cart-page-container">
           <div className="cart-horizontal-card-container">
-            {cartListState.cartList.map((product) => {
+            {cart.map((product) => {
               return <HorizontalProductCard product={product} />;
             })}
           </div>

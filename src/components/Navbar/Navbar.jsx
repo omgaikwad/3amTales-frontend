@@ -6,7 +6,7 @@ import { useWishlistContext } from "../../context/wishlist-context";
 import { useAuthContext } from "../../context/auth-context";
 
 export const Navbar = () => {
-  const { cartListState } = useCartContext();
+  const { cart } = useCartContext();
   const { wishlistState } = useWishlistContext();
 
   const navigate = useNavigate();
@@ -68,10 +68,8 @@ export const Navbar = () => {
         >
           <i className="fa-solid fa-cart-shopping fa-lg navbar-icons"></i>
           <span>Cart</span>
-          {cartListState.cartList.length === 0 ? null : (
-            <div className="badge badge-number">
-              {cartListState.cartList.length}
-            </div>
+          {cart.length === 0 ? null : (
+            <div className="badge badge-number">{cart.length}</div>
           )}
         </div>
 
