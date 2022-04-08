@@ -1,17 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/auth-context";
 import { useCartContext } from "../../context/cart-context";
 import { useWishlistContext } from "../../context/wishlist-context";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   const { cart, addProductToCart } = useCartContext();
-  const {
-    wishlistDispatch,
-    wishlist,
-    addProductToWishlist,
-    removeProductFromWishlist,
-  } = useWishlistContext();
+  const { wishlist, addProductToWishlist, removeProductFromWishlist } =
+    useWishlistContext();
+
+  const { auth } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -41,7 +40,9 @@ const ProductCard = ({ product }) => {
           <i
             onClick={(e) => {
               e.stopPropagation();
-              addProductToWishlist(product);
+              auth.isLoggedIn
+                ? addProductToWishlist(product)
+                : navigate("/login");
             }}
             className="far fa-heart fa-xl card-heart-icon wishlist-heart card-close"
           ></i>
@@ -82,7 +83,9 @@ const ProductCard = ({ product }) => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  addProductToCart(product);
+                  auth.isLoggedIn
+                    ? addProductToCart(product)
+                    : navigate("/login");
                 }}
                 className="btn btn-icon add-to-cart"
               >

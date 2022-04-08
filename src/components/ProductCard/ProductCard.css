@@ -17,6 +17,7 @@
 }
 .card-title {
   margin: 0.4rem 0.6rem 0 0.6rem;
+  height: 2.4rem;
 }
 .wishlist-heart {
   color: var(--primary-color);
