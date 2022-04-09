@@ -18,7 +18,6 @@ export const products = [
     discountPercent: "5",
     image: "/assets/book-images/immortals-of-meluha.jpg",
     categoryName: "myths-legends-sagas",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -32,7 +31,6 @@ export const products = [
     discountPercent: "45",
     image: "/assets/book-images/origin-danBrown.jpg",
     categoryName: "crime-mystery-thriller",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -46,11 +44,10 @@ export const products = [
     discountPercent: "29",
     image: "/assets/book-images/prisoner-of-birth.jpg",
     categoryName: "crime-mystery-thriller",
-    inWishlist: false,
   },
   {
     _id: uuid(),
-    title: "Sapiens",
+    title: "Sapiens - A Brief History of Humankind",
     author: "Yuval Noah Harari",
     description:
       " What makes us brilliant? What makes us deadly? What makes us Sapiens? Yuval Noah Harari challenges everything we know about being human in the perfect read for these unprecedented times. Earth is 4.5 billion years old. In just a fraction of that time, one species among countless others has conquered it: us. In this bold and provocative book, Yuval Noah Harari explores who we are, how we got here and where we're going. ",
@@ -60,7 +57,6 @@ export const products = [
     discountPercent: "35",
     image: "/assets/book-images/sapiens.jpg",
     categoryName: "non-fiction",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -74,7 +70,6 @@ export const products = [
     discountPercent: "28",
     image: "/assets/book-images/the-alchemist.jpg",
     categoryName: "fantasy-fiction",
-    inWishlist: false,
   },
   {
     _id: uuid(),
@@ -88,11 +83,10 @@ export const products = [
     discountPercent: "20",
     image: "/assets/book-images/the-krishna-key.jpg",
     categoryName: "action-adventure",
-    inWishlist: false,
   },
   {
     _id: uuid(),
-    title: "The Magic Drum",
+    title: "The Magic Drum and Other Favourite Stories",
     author: "Sudha Murthy",
     description:
       "Kings and misers, princes and paupers, wise men and foolish boys, the funniest and oddest men and women come alive in this sparkling  new collection of stories. The clever princess will only marry the man who can ask her a question she cannot answer; the orphan boy outwits his greedy uncles with a bag of ash; and an old couple in distress is saved by a magic drum.",
@@ -102,6 +96,70 @@ export const products = [
     discountPercent: "30",
     image: "/assets/book-images/the-magic-drums.jpg",
     categoryName: "childrens",
-    inWishlist: false,
+  },
+  {
+    _id: uuid(),
+    title: "Diary Of A Wimpy Kid (Book 1)",
+    author: "Jeff Kinney",
+    description:
+      "Based on the adventures of an imaginary character Greg Heffley, The Diary Of A Wimpy Kid has been described as a 'novel in cartoons’ that is designed as part of reading material for kids aged between eight and twelve years. Regarded as a great graphic novel series for kids, 'Diary of a Wimpy Kid' takes the reader on a whirlwind journey to the inner world of a new-age kid.",
+    rating: "4",
+    mrpPrice: "299",
+    discountPrice: "252",
+    discountPercent: "16",
+    image: "/assets/book-images/diaryOfAWimpyKid.jpg",
+    categoryName: "childrens",
+  },
+  {
+    _id: uuid(),
+    title: "How to Win Friends and Influence People",
+    author: "Yuval Noah Harari",
+    description:
+      "How to Win Friends and Influence People is a well-researched and comprehensive guide that will help you through these everyday problems and make success look easier. You can learn to expand your social circle, polish your skill set, find ways to put forward your thoughts more clearly, and build mental strength to counter all hurdles that you may come across on the path to success.",
+    rating: "5",
+    mrpPrice: "250",
+    discountPrice: "109",
+    discountPercent: "56",
+    image: "/assets/book-images/howToWinFriends.jpg",
+    categoryName: "non-fiction",
+  },
+  {
+    _id: uuid(),
+    title: "Norwegian Wood",
+    author: "Haruki Murakami",
+    description:
+      "When he hears her favourite Beatles song, Toru Watanabe recalls his first love Naoko, the girlfriend of his best friend Kizuki. Immediately he is transported back almost twenty years to his student days in Tokyo, adrift in a world of uneasy friendships, casual sex, passion, loss and desire - to a time when an impetuous young woman called Midori marches into his life and he has to choose between the future and the past.",
+    rating: "5",
+    mrpPrice: "599",
+    discountPrice: "395",
+    discountPercent: "34",
+    image: "/assets/book-images/norwegianWood.jpg",
+    categoryName: "fantasy-fiction",
+  },
+  {
+    _id: uuid(),
+    title: "The Da Vinci Code",
+    author: "Dan Brown",
+    description:
+      "A man is murdered in the worlds most famous museum. Around his body is a ring of codes, drawn in blood. He died to protect a secret which Robert Langdon must uncover. It will be a race against time to decipher this final message. Can he get there before the killers do?",
+    rating: "3",
+    mrpPrice: "499",
+    discountPrice: "334",
+    discountPercent: "33",
+    image: "/assets/book-images/theDaVinciCode.jpg",
+    categoryName: "action-adventure",
+  },
+  {
+    _id: uuid(),
+    title: "The Fellowship of the Ring: Book 1",
+    author: "J.R.R. Tolkien",
+    description:
+      "The Fellowship of the Ring is the first of the three volumes that comprise The Lord of the Rings novel. Set in a mythical universe of Middle-earth, this book continues in the same tone as The Hobbit. The Dark Lord, Sauron, is the Lord of the Rings, who is on a mission to reclaim the One Ring and use it to enslave all of Middle-earth.",
+    rating: "4",
+    mrpPrice: "499",
+    discountPrice: "344",
+    discountPercent: "31",
+    image: "/assets/book-images/theLordOfTheRings.jpg",
+    categoryName: "myths-legends-sagas",
   },
 ];

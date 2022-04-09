@@ -9,12 +9,12 @@ const SidebarFilter = () => {
     <div className="SidebarFilter filter-container">
       <div className="filter-heading">
         <h3>FILTERS</h3>
-        <btn
-          className="btn-link btn-clear-filter"
+        <button
+          className="btn btn-outline-primary btn-clear-filter"
           onClick={() => productListDispatch({ type: "" })}
         >
           Clear
-        </btn>
+        </button>
       </div>
       <div className="filter-price-container">
         <h3>Ratings</h3>
@@ -52,7 +52,7 @@ const SidebarFilter = () => {
 
       <div className="filter-sort-by">
         <h3>Sort by</h3>
-        <label for="price-low-to-high">
+        <label htmlFor="price-low-to-high">
           <input
             type="radio"
             name="sort-by"
@@ -63,7 +63,7 @@ const SidebarFilter = () => {
           />
           Price - Low to High
         </label>
-        <label for="price-high-to-low">
+        <label htmlFor="price-high-to-low">
           <input
             type="radio"
             name="sort-by"

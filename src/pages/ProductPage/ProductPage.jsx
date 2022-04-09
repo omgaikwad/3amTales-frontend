@@ -1,5 +1,6 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/auth-context";
 import { useCartContext } from "../../context/cart-context";
 import { useProductContext } from "../../context/product-context";
 import { useWishlistContext } from "../../context/wishlist-context";
@@ -8,8 +9,10 @@ import "./ProductPage.css";
 const ProductPage = () => {
   const { productId } = useParams();
   const { productList } = useProductContext();
-  const { cartListState, cartListDispatch } = useCartContext();
-  const { wishlistState, wishlistDispatch } = useWishlistContext();
+  const { cart, addProductToCart } = useCartContext();
+  const { wishlist, addProductToWishlist } = useWishlistContext();
+  const { auth } = useAuthContext();
+  const navigate = useNavigate();
 
   const product = productList.find((product) => product._id === productId);
 
@@ -36,17 +39,17 @@ const ProductPage = () => {
 
           <div className="card-button product-button-container">
             {/* Add to Cart Button */}
-            {cartListState.cartList.find(
-              (cartItem) => cartItem._id === product._id
-            ) ? (
+            {cart.find((cartItem) => cartItem._id === product._id) ? (
               <button className="btn btn-success move-to-cart">
                 <Link to="/cart">Go To Cart</Link>
               </button>
             ) : (
               <button
-                onClick={() =>
-                  cartListDispatch({ type: "ADD_TO_CART", payload: product })
-                }
+                onClick={() => {
+                  auth.isLoggedIn
+                    ? addProductToCart(product)
+                    : navigate("/login");
+                }}
                 className="btn btn-icon add-to-cart"
               >
                 <i className="fas fa-shopping-cart"></i>
@@ -55,18 +58,17 @@ const ProductPage = () => {
             )}
 
             {/* Add to Wishlist Button */}
-            {wishlistState.wishlist.find((obj) => obj._id === product._id) ? (
+            {wishlist.find((obj) => obj._id === product._id) ? (
               <button className="btn btn-success move-to-cart">
                 <Link to="/wishlist">Go To Wishlist</Link>
               </button>
             ) : (
               <button
-                onClick={() =>
-                  wishlistDispatch({
-                    type: "ADD_TO_WISHLIST",
-                    payload: product,
-                  })
-                }
+                onClick={() => {
+                  auth.isLoggedIn
+                    ? addProductToWishlist(product)
+                    : navigate("/login");
+                }}
                 className="btn btn-outline-primary add-to-cart"
               >
                 Add to Wishlist

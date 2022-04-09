@@ -38,6 +38,10 @@
 .navbar-cart {
   font-family: "Poppins", sans-serif !important;
   color: var(--primary-color);
+  cursor: pointer;
+}
+.navbar-cart span {
+  font-weight: 600;
 }
 .left-navbar {
   margin: 0;
@@ -58,4 +62,51 @@
   background-color: transparent;
   outline: none;
   width: 20rem;
+}
+
+.navbar-profile-container {
+  position: relative;
+}
+
+.navbar-profile-title {
+  color: var(--primary-color);
+}
+
+.navbar-profile-title-account {
+  color: var(--primary-color);
+  font-size: 12px;
+}
+
+.navbar-profile-title-container {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navbar-profile-dropdown-container {
+  border: 2px solid var(--primary-color);
+  background-color: white;
+  border-radius: 4px;
+  padding: 1rem 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 6rem;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+}
+
+.navbar-dropdown-my-rofile a {
+  color: var(--primary-color);
+}
+
+.navbar-profile-dropdown-container button {
+  width: 100%;
+  margin: 0;
+}
+
+.display-none {
+  display: none;
 }

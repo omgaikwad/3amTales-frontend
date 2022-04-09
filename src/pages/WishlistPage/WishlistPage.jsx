@@ -5,11 +5,11 @@ import { useWishlistContext } from "../../context/wishlist-context";
 import { Link } from "react-router-dom";
 
 const WishlistPage = () => {
-  const { wishlistState, wishlistDispatch } = useWishlistContext();
+  const { wishlist } = useWishlistContext();
 
   return (
     <div className="WishlistPage">
-      {wishlistState.wishlist.length === 0 ? (
+      {wishlist.length === 0 ? (
         <div className="no-items-in-wishlist-container">
           <h3 className="wishlist-heading">No Items in Wishlist!</h3>
           <button className="btn btn-primary">
@@ -20,8 +20,8 @@ const WishlistPage = () => {
         <div className="wishlist-container">
           <h3 className="wishlist-heading">My Wishlist</h3>
           <div className="wishlist-products-container">
-            {wishlistState.wishlist.map((product) => {
-              return <ProductCard product={product} />;
+            {wishlist.map((product) => {
+              return <ProductCard product={product} key={product._id} />;
             })}
           </div>
         </div>
