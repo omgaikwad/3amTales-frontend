@@ -66,8 +66,8 @@ const LoginPage = () => {
   // Guest Login Handler
   const guestLoginHandler = () => {
     setLoginDetails({
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika123",
+      email: "omgaikwad@gmail.com",
+      password: "omgaikwad123",
     });
     loginExistingUser();
   };
